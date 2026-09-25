@@ -1,17 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+const emptySubscribe = () => () => {};
 
 /**
- * Hook para determinar si el componente se ha montado en el cliente.
- * Evita discrepancias de renderizado entre SSR y cliente.
+ * Hook idóneo para React 19 para determinar si el componente se ha montado en el cliente.
+ * Evita discrepancias de hidratación entre SSR y el cliente sin activar warnings de setState en efecto.
  */
 export function useMounted(): boolean {
-  const [mounted, setMounted] = useState<boolean>(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  return mounted;
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 }

@@ -72,7 +72,7 @@ export function StatsCards({ metrics }: StatsCardsProps) {
               caballos activos
             </span>
           </div>
-          <div className="mt-4 flex items-center gap-2 text-xs">
+          <div className="mt-4 flex items-center gap-2 text-xs flex-wrap">
             <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               {metrics.totalHorses - metrics.horsesInTreatment} Óptimos
@@ -81,6 +81,12 @@ export function StatsCards({ metrics }: StatsCardsProps) {
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 font-medium">
                 <HeartPulse className="w-3 h-3 text-rose-600" />
                 {metrics.horsesInTreatment} en cuidado
+              </span>
+            )}
+            {metrics.horsesWithOverdueFarrier > 0 && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 font-medium">
+                <Building2 className="w-3 h-3 text-amber-600" />
+                {metrics.horsesWithOverdueFarrier} herraje por atender
               </span>
             )}
           </div>
